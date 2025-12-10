@@ -1,0 +1,124 @@
+/* Colores base */
+:root {
+    --color-fondo: #0f172a;
+    --color-claro: #f9fafb;
+    --color-principal: #6366f1;
+    --color-secundario: #60a5fa;
+}
+
+/* Estilo general */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-claro);
+}
+
+header {
+    background: linear-gradient(90deg, #111827, #1d4ed8);
+    padding: 1rem 2rem;
+}
+
+header h1 {
+    margin: 0 0 0.5rem 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    color: var(--color-claro);
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+article {
+    margin-bottom: 1.5rem;
+}
+
+/* Texto */
+h2, h3, h4 {
+    color: var(--color-secundario);
+}
+
+/* Imagen y video */
+img, video {
+    max-width: 100%;
+    display: block;
+    margin: 1rem 0;
+    border-radius: 8px;
+}
+
+/* Listas */
+ol, ul {
+    padding-left: 1.5rem;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    border: 1px solid #4b5563;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    background-color: #1f2937;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 400px;
+}
+
+input {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #4b5563;
+}
+
+button {
+    margin-top: 0.5rem;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-principal);
+    color: var(--color-claro);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4f46e5;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #020617;
+    font-size: 0.9rem;
+}
