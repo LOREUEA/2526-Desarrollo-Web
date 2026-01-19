@@ -1,0 +1,145 @@
+/* Variables de color*/
+:root{
+  --color-fondo:#0f172a;
+  --color-claro:#f9fafb;
+  --color-principal:#6366f1;
+  --color-secundario:#60a5fa;
+}
+
+/*Base*/
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background-color:var(--color-fondo);
+  color:var(--color-claro);
+}
+
+/* Header */
+header{
+  background:linear-gradient(90deg,#111827,#1d4ed8);
+}
+
+/* Títulos */
+h2, h3, h4{
+  color:var(--color-secundario);
+}
+
+/* Links del navbar (Bootstrap + tu toque)*/
+.navbar .nav-link{
+  color:rgba(255,255,255,.85);
+}
+.navbar .nav-link:hover{
+  color:#fff;
+  text-decoration:underline;
+}
+
+/* Cards (mejor estética)*/
+.card{
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+.card:hover{
+  transform:translateY(-2px);
+  transition:transform .2s ease;
+}
+
+/* Multimedia uniforme*/
+.media-card{
+  height:320px;       
+  width:100%;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+video.media-card{
+  background:#000;
+}
+
+/* Botón principal (sobrescribe Bootstrap)*/
+.btn-primary{
+  background-color:#ff5733 !important;
+  border-color:#ff5733 !important;
+}
+.btn-primary:hover{
+  filter:brightness(.92);
+}
+
+/* Navbar toggler (hamburguesa)*/
+.navbar-toggler{
+  border:1px solid rgba(255,255,255,.35);
+}
+.navbar-toggler:focus{
+  box-shadow:none;
+}
+/* Galería*/
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.galeria-item {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.galeria-item:hover {
+  transform: scale(1.02);
+}
+
+.galeria-item.seleccionada {
+  border-color: #ff5733;
+  box-shadow: 0 0 0 3px rgba(255, 87, 51, 0.35);
+}
+
+
+/* Footer*/
+footer{
+  font-size:.9rem;
+}
+
+/* Media query*/
+@media (max-width:576px){
+  header{
+    background:linear-gradient(90deg,#0b1220,#143a8a);
+  }
+
+/* Formulario*/
+
+/* Mensajes de error más visibles */
+  #registroForm small.text-danger{
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+  }
+
+/* Mensaje final de éxito/error */
+  #successMsg{
+    min-height: 20px;
+  }
+  #successMsg:empty{
+    margin-bottom: 0 !important;
+  }
+
+/* Bootstrap is-valid / is-invalid en tema oscuro (más marcado) */
+  #registroForm .form-control.is-valid{
+    border-color: #16a34a !important;
+    box-shadow: 0 0 0 0.15rem rgba(22, 163, 74, 0.25) !important;
+  }
+
+  #registroForm .form-control.is-invalid{
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 0.15rem rgba(220, 38, 38, 0.25) !important;
+  }
+
+/* Botón Enviar deshabilitado (más evidente) */
+  #btnEnviar:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
