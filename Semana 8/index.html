@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>GlitchGirls</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- BOOTSTRAP CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS PROPIO -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">GLITCHGIRLS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#info">Info</a></li>
+        <li class="nav-item"><a class="nav-link" href="#registro">Registro</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div style="height:70px;"></div>
+
+<!-- ================= ALERT ================= -->
+<div class="container mt-3">
+  <div class="alert alert-info alert-dismissible fade show text-center">
+    🚀 Bienvenida a <strong>GlitchGirls</strong>: tecnología, IA y ciberseguridad.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+</div>
+
+<!-- ================= CAROUSEL ================= -->
+<section id="inicio" class="container mt-4">
+  <div id="carouselGlitch" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselGlitch" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#carouselGlitch" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#carouselGlitch" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://www.aprender21.com/imagenes/blog/mejores-herramientas-inteligencia-artificial-2026-header.jpg"
+             class="d-block w-100 carousel-img" alt="IA">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Inteligencia Artificial</h5>
+          <p>El futuro ya está aquí.</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="https://icontinental.edu.pe/wp-content/uploads/2026/01/5-proyectos-heccos-con-ciencia-de-datos-e-ia-2026.webp"
+             class="d-block w-100 carousel-img" alt="Datos">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Ciencia de Datos</h5>
+          <p>Decisiones basadas en información.</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="https://www.icf.cl/wp-content/uploads/2026/01/ia-negocios.jpg"
+             class="d-block w-100 carousel-img" alt="Tecnología">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Tecnología</h5>
+          <p>Innovación constante.</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselGlitch" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselGlitch" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</section>
+
+<!-- ================= INFO + MODAL ================= -->
+<section id="info" class="container mt-5 text-center">
+  <h2>¿Qué es GlitchGirls?</h2>
+  <p class="mt-3">
+    Comunidad enfocada en inteligencia artificial, ciberseguridad y tecnología,
+    con un enfoque práctico y accesible.
+  </p>
+
+  <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#modalInfo">
+    Ver más información
+  </button>
+</section>
+
+<div class="modal fade" id="modalInfo" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">GlitchGirls</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Aprendizaje en tecnologías emergentes con enfoque moderno y práctico.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FORMULARIO ================= -->
+<section id="registro" class="container mt-5">
+  <h2 class="text-center mb-4">Formulario de Registro</h2>
+
+  <form id="registroForm" class="col-md-6 mx-auto" novalidate>
+
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" id="nombre" class="form-control">
+      <small id="errorNombre" class="text-danger"></small>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Correo</label>
+      <input type="email" id="correo" class="form-control">
+      <small id="errorCorreo" class="text-danger"></small>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input type="password" id="password" class="form-control">
+      <small id="errorPassword" class="text-danger"></small>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Confirmar contraseña</label>
+      <input type="password" id="confirmPassword" class="form-control">
+      <small id="errorConfirm" class="text-danger"></small>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Edad</label>
+      <input type="number" id="edad" class="form-control">
+      <small id="errorEdad" class="text-danger"></small>
+    </div>
+
+    <button id="btnEnviar" class="btn btn-primary w-100" disabled>Registrar</button>
+    <div id="successMsg"></div>
+
+  </form>
+</section>
+
+<!-- ================= MODAL ÉXITO ================= -->
+<div class="modal fade" id="modalExito" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registro exitoso</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Tus datos fueron enviados correctamente.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-dark text-light text-center mt-5 p-4">
+  © 2026 GlitchGirls | Proyecto académico
+</footer>
+
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JS PROPIO -->
+<script src="script.js"></script>
+
+</body>
+</html>
