@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Sistema Web de Reservas y Gestión de Mesas</h2>
+
+<p>Gestione reservas, controle mesas y promociones fácilmente.</p>
+
+{% if cliente %}
+<p><strong>Bienvenido {{ cliente }}. Tu reserva está en proceso.</strong></p>
+{% endif %}
+
+{% endblock %}
