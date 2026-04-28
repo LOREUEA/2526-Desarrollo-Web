@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Registro — GlitchGirls{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper py-5">
+  <div class="container">
+    <div class="auth-card" style="max-width:520px;">
+      <div class="auth-logo">⬡ GLITCHGIRLS</div>
+      <div class="auth-subtitle">CREAR CUENTA</div>
+
+      <form method="POST" id="registroForm" novalidate>
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" id="nombre" name="nombre" class="form-control"
+                 placeholder="Tu nombre completo">
+          <small id="errorNombre" class="text-danger"></small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Correo electrónico</label>
+          <input type="email" id="correo" name="email" class="form-control"
+                 placeholder="tu@correo.com">
+          <small id="errorCorreo" class="text-danger"></small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Contraseña</label>
+          <input type="password" id="password" name="password" class="form-control"
+                 placeholder="Mínimo 8 caracteres">
+          <small id="errorPassword" class="text-danger"></small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Confirmar contraseña</label>
+          <input type="password" id="confirmPassword" name="confirm_password" class="form-control"
+                 placeholder="Repite tu contraseña">
+          <small id="errorConfirm" class="text-danger"></small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Edad</label>
+          <input type="number" id="edad" name="edad" class="form-control"
+                 placeholder="Tu edad (mínimo 18)">
+          <small id="errorEdad" class="text-danger"></small>
+        </div>
+
+        <button id="btnEnviar" type="submit" class="btn btn-primary w-100 mt-2" disabled>
+          <i class="bi bi-person-plus me-2"></i>Crear cuenta
+        </button>
+        <div id="successMsg"></div>
+      </form>
+
+      <hr class="auth-divider">
+      <p class="text-center mb-0" style="color:var(--text-muted);font-size:0.88rem;">
+        ¿Ya tienes cuenta?
+        <a href="{{ url_for('login') }}" style="color:var(--accent);">Inicia sesión</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Éxito -->
+<div class="modal fade" id="modalExito" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-check-circle me-2"></i>Registro exitoso</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter:invert(1);"></button>
+      </div>
+      <div class="modal-body" style="color:var(--text-muted);">
+        Tu cuenta fue creada correctamente. ¡Bienvenida a GlitchGirls!
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('login') }}" class="btn btn-success btn-sm">
+          <i class="bi bi-box-arrow-in-right me-1"></i>Ingresar
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

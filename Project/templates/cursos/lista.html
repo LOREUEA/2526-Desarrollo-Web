@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block title %}Cursos — GlitchGirls{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h1><i class="bi bi-collection-play me-3"></i>Cursos</h1>
+        <p>Gestión del catálogo de cursos</p>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="{{ url_for('cursos.reporte_pdf') }}" class="btn btn-danger btn-sm">
+          <i class="bi bi-file-earmark-pdf me-1"></i>PDF
+        </a>
+        <a href="{{ url_for('cursos.nuevo') }}" class="btn btn-primary">
+          <i class="bi bi-plus-lg me-1"></i>Nuevo Curso
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <!-- Búsqueda / Filtro -->
+  <div class="card mb-4">
+    <div class="card-body py-3">
+      <form method="GET" class="row g-3 align-items-end">
+        <div class="col-md-5">
+          <label class="form-label">Buscar</label>
+          <input type="text" name="q" class="form-control" placeholder="Nombre del curso..."
+                 value="{{ request.args.get('q','') }}">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Nivel</label>
+          <select name="nivel" class="form-select">
+            <option value="">Todos</option>
+            <option value="Básico"    {% if request.args.get('nivel')=='Básico' %}selected{% endif %}>Básico</option>
+            <option value="Intermedio"{% if request.args.get('nivel')=='Intermedio' %}selected{% endif %}>Intermedio</option>
+            <option value="Avanzado"  {% if request.args.get('nivel')=='Avanzado' %}selected{% endif %}>Avanzado</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary w-100"><i class="bi bi-search me-1"></i>Filtrar</button>
+        </div>
+        <div class="col-md-2">
+          <a href="{{ url_for('cursos.lista') }}" class="btn btn-secondary w-100">Limpiar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tabla de cursos -->
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <span><i class="bi bi-table me-2"></i>LISTADO DE CURSOS</span>
+      <span style="color:var(--text-muted);font-size:0.75rem;">
+        {{ cursos|length }} resultado(s)
+      </span>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Nivel</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if cursos %}
+              {% for c in cursos %}
+              <tr>
+                <td style="color:var(--text-muted);">{{ c.id }}</td>
+                <td>
+                  <span style="font-family:'Orbitron',monospace;font-size:0.82rem;">
+                    {{ c.nombre }}
+                  </span>
+                </td>
+                <td style="color:var(--text-muted);max-width:250px;">
+                  {{ c.descripcion[:60] }}{% if c.descripcion|length > 60 %}...{% endif %}
+                </td>
+                <td>
+                  <span style="font-family:'Orbitron',monospace;color:var(--accent);">
+                    S/ {{ "%.2f"|format(c.precio) }}
+                  </span>
+                </td>
+                <td>
+                  <span class="badge
+                    {% if c.nivel == 'Básico' %}bg-success
+                    {% elif c.nivel == 'Intermedio' %}bg-warning
+                    {% else %}bg-danger{% endif %}">
+                    {{ c.nivel }}
+                  </span>
+                </td>
+                <td class="text-center">
+                  <div class="d-flex gap-2 justify-content-center">
+                    <a href="{{ url_for('cursos.editar', id=c.id) }}"
+                       class="btn btn-warning btn-sm" title="Editar">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                    <button class="btn btn-danger btn-sm" title="Eliminar"
+                            data-bs-toggle="modal" data-bs-target="#modalEliminar{{ c.id }}">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Modal Confirmar Eliminación -->
+              <div class="modal fade" id="modalEliminar{{ c.id }}" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"><i class="bi bi-exclamation-triangle me-2"></i>Confirmar</h5>
+                      <button class="btn-close" data-bs-dismiss="modal" style="filter:invert(1);"></button>
+                    </div>
+                    <div class="modal-body" style="color:var(--text-muted);">
+                      ¿Eliminar el curso <strong style="color:var(--accent);">{{ c.nombre }}</strong>?
+                      Esta acción no se puede deshacer.
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                      <a href="{{ url_for('cursos.eliminar', id=c.id) }}"
+                         class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash me-1"></i>Eliminar
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="6" class="text-center py-5" style="color:var(--text-muted);">
+                  <i class="bi bi-inbox d-block mb-2" style="font-size:2.5rem;"></i>
+                  No hay cursos registrados aún.
+                  <a href="{{ url_for('cursos.nuevo') }}" style="color:var(--accent);">Crear el primero.</a>
+                </td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

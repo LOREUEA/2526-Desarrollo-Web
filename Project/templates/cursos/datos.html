@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}Datos Persistidos — GlitchGirls{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1><i class="bi bi-database me-3"></i>Persistencia de Datos</h1>
+    <p>Semana 12 — Archivos JSON, CSV y TXT</p>
+  </div>
+</div>
+
+<div class="container pb-5">
+  <ul class="nav nav-tabs mb-4" id="tabDatos" role="tablist"
+      style="border-bottom-color:var(--border);">
+    <li class="nav-item">
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabJson"
+              style="color:var(--text-muted);background:none;border-color:transparent;">
+        <i class="bi bi-filetype-json me-2" style="color:#f1c40f;"></i>JSON
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabCsv"
+              style="color:var(--text-muted);background:none;border-color:transparent;">
+        <i class="bi bi-filetype-csv me-2" style="color:var(--success);"></i>CSV
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabTxt"
+              style="color:var(--text-muted);background:none;border-color:transparent;">
+        <i class="bi bi-file-text me-2" style="color:var(--info);"></i>TXT
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- JSON -->
+    <div class="tab-pane fade show active" id="tabJson">
+      <div class="card">
+        <div class="card-header"><i class="bi bi-braces me-2"></i>DATOS EN JSON</div>
+        <div class="card-body">
+          <pre style="background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.2rem;color:#a8ff78;font-size:0.82rem;overflow-x:auto;">{{ datos_json }}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- CSV -->
+    <div class="tab-pane fade" id="tabCsv">
+      <div class="card">
+        <div class="card-header"><i class="bi bi-table me-2"></i>DATOS EN CSV</div>
+        <div class="card-body">
+          {% if datos_csv %}
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  {% for key in datos_csv[0].keys() %}
+                  <th>{{ key }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for fila in datos_csv %}
+                <tr>
+                  {% for val in fila.values() %}
+                  <td>{{ val }}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+          <p style="color:var(--text-muted);">Sin datos CSV aún. Crea cursos primero.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- TXT -->
+    <div class="tab-pane fade" id="tabTxt">
+      <div class="card">
+        <div class="card-header"><i class="bi bi-file-text me-2"></i>DATOS EN TXT</div>
+        <div class="card-body">
+          <pre style="background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.2rem;color:var(--text-main);font-size:0.82rem;white-space:pre-wrap;">{{ datos_txt or 'Sin datos TXT aún. Crea cursos primero.' }}</pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,18 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask
+from flask_login import LoginManager
+from conexion.conexion import get_connection
 
 app = Flask(__name__)
+app.secret_key = 'glitchgirls_secret'
 
-@app.route('/')
-def inicio():
-    return render_template('index.html')
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/reserva/<cliente>')
-def reserva(cliente):
-    return render_template('index.html', cliente=cliente)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# Importar rutas
+from routes import auth, cursos, main
+app.register_blueprint(auth.bp)
+app.register_blueprint(cursos.bp)
+app.register_blueprint(main.bp)

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}{% if curso %}Editar{% else %}Nuevo{% endif %} Curso — GlitchGirls{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>
+      <i class="bi bi-{% if curso %}pencil{% else %}plus-circle{% endif %} me-3"></i>
+      {% if curso %}Editar Curso{% else %}Nuevo Curso{% endif %}
+    </h1>
+    <p>{% if curso %}Modifica los datos del curso.{% else %}Completa el formulario para agregar un curso.{% endif %}</p>
+  </div>
+</div>
+
+<div class="container pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+
+      <div class="card">
+        <div class="card-header">
+          <i class="bi bi-collection-play me-2"></i>
+          DATOS DEL CURSO
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            <!-- Nombre -->
+            <div class="mb-3">
+              <label class="form-label">Nombre del curso</label>
+              <input type="text" name="nombre" class="form-control"
+                     placeholder="Ej: Introducción a la IA"
+                     value="{{ curso.nombre if curso else '' }}" required>
+            </div>
+
+            <!-- Descripción -->
+            <div class="mb-3">
+              <label class="form-label">Descripción</label>
+              <textarea name="descripcion" class="form-control" rows="3"
+                        placeholder="Breve descripción del curso...">{{ curso.descripcion if curso else '' }}</textarea>
+            </div>
+
+            <!-- Precio y Nivel en fila -->
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Precio (S/)</label>
+                <input type="number" name="precio" class="form-control"
+                       step="0.01" min="0" placeholder="0.00"
+                       value="{{ curso.precio if curso else '' }}" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Nivel</label>
+                <select name="nivel" class="form-select" required>
+                  <option value="">Seleccionar...</option>
+                  <option value="Básico"     {% if curso and curso.nivel=='Básico' %}selected{% endif %}>Básico</option>
+                  <option value="Intermedio" {% if curso and curso.nivel=='Intermedio' %}selected{% endif %}>Intermedio</option>
+                  <option value="Avanzado"   {% if curso and curso.nivel=='Avanzado' %}selected{% endif %}>Avanzado</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex gap-3 mt-4">
+              <button type="submit" class="btn btn-primary px-4">
+                <i class="bi bi-{% if curso %}check-lg{% else %}plus-lg{% endif %} me-2"></i>
+                {% if curso %}Guardar cambios{% else %}Crear curso{% endif %}
+              </button>
+              <a href="{{ url_for('cursos.lista') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-2"></i>Volver
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
